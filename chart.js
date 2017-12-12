@@ -15,6 +15,7 @@
             container: "chart",
             size: {w: 500, h: 250},
             label: {x: 'X Axis', y: 'Y Axis'},
+            bgColor: "white"
         }
 
         // Create opt by extending defaults with the passed in arugments
@@ -50,6 +51,9 @@
         canvas.width  = this.opt.size.w;
         canvas.height = this.opt.size.h;
         this.ctx = canvas.getContext("2d");
+
+        this.ctx.fillStyle = this.opt.bgColor;
+        this.ctx.fillRect(0, 0, this.opt.size.w, this.opt.size.h);
 
         render.call(this);
     }
