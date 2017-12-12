@@ -39,20 +39,20 @@ BarChart is a javascript class that gives you ability to visualize your data and
 **Example**
 ```
 <script type="text/javascript" src="chart.js"></script>
-    <script type="text/javascript">
-        new ChartBar({
-            container: "chart",
-            size: {w: 500, h: 600},
-            label: {x: 'X Axis', y: 'Y Axis'},
-            data: [
-                {color: 'red', value: 80},
-                {color: 'green', value: 20},
-                {color: 'blue', value: 100},
-                {color: 'silver', value: 50},
-                {color: '#fbb', value: 10},
-            ]
-        });
-    </script>
+<script type="text/javascript">
+    new ChartBar({
+        container: "chart",
+        size: {w: 500, h: 600},
+        label: {x: 'X Axis', y: 'Y Axis'},
+        data: [
+            {color: 'red', value: 80},
+            {color: 'green', value: 20},
+            {color: 'blue', value: 100},
+            {color: 'silver', value: 50},
+            {color: '#fbb', value: 10},
+        ]
+    });
+</script>
 ```
 
 ### License
