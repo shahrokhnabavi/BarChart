@@ -88,7 +88,7 @@
     }
 
     //Labels
-    function lables()
+    function labels()
     {
         var ctx = this.ctx,
             w   = this.opt.size.w,
@@ -115,25 +115,10 @@
         axis.call(this);
 
         // Text
-        lables.call(this);
+        labels.call(this);
 
         // Bars
         if( this.opt.data.length )
             bars.call(this);
     }
 }());
-
-
-
-new ChartBar({
-    container: "chart",
-    size: {w: 500, h: 600},
-    label: {x: 'X Axis', y: 'Y Axis'},
-    data: [
-        {color: 'red', value: 80},
-        {color: 'green', value: 20},
-        {color: 'blue', value: 100},
-        {color: 'silver', value: 50},
-        {color: '#fbb', value: 10},
-    ]
-});
