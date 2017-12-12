@@ -38,7 +38,7 @@ BarChart is a javascript class that gives you ability to visualize your data and
 
 **Example**
 ```
-	<script type="text/javascript" src="chart.js"></script>
+<script type="text/javascript" src="chart.js"></script>
     <script type="text/javascript">
         new ChartBar({
             container: "chart",
