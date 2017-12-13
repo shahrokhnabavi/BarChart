@@ -1,6 +1,6 @@
-// "use strict";
-
 (function() {
+    "use strict";
+
     var lbMargin = 20,
         rtMargin = 10,
         margin   = lbMargin + rtMargin,
@@ -99,7 +99,7 @@
             ctx.fillRect(lbMargin+1, barMinHeightPoint, value, barWidth);
 
             if( this.opt.valueLableEnable ) {
-                ctx.fillStyle = item.valueColor;
+                ctx.fillStyle = item.valueColor ? item.valueColor : 'black';
                 ctx.fillText(item.value + this.opt.valueLableTail, lableCenter, lableMiddle);
             }
         });

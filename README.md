@@ -1,5 +1,5 @@
 # BarChart
-----
+----------
 BarChart is a javascript class that gives you ability to visualize your data and show it in the bar chart. This class has a lot of options which give it flexibility and also the usage of this class is so simple.
 
 ### Features
