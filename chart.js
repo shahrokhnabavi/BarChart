@@ -15,7 +15,9 @@
             container: "chart",
             size: {w: 500, h: 250},
             label: {x: 'X Axis', y: 'Y Axis'},
-            bgColor: "white"
+            bgColor: "white",
+            valueLableTail: "%",
+            valueLableEnable: false,
         }
 
         // Create opt by extending defaults with the passed in arugments
@@ -84,10 +86,22 @@
 
         ctx.setTransform(1, 0, 0, 1, 0, 0);
         this.opt.data.forEach( (item, index) => {
-            let value = item.value * prct / 100;
+            // Filter user input
+            item.value = item.value > 100 ? 100 : item.value;
+            item.value = item.value < 0 ? 0 : item.value;
+
+            let value = item.value * prct / 100,
+                barMinHeightPoint = index*(barWidth+barSpace)+barSpace+rtMargin
+                lableCenter = (lbMargin+1)+ Math.floor(value/2),
+                lableMiddle = (barWidth/2) + barMinHeightPoint;
 
             ctx.fillStyle = item.color;
-            ctx.fillRect(lbMargin+1,(index*(barWidth+barSpace)) + rtMargin + barSpace, value, barWidth);
+            ctx.fillRect(lbMargin+1, barMinHeightPoint, value, barWidth);
+
+            if( this.opt.valueLableEnable ) {
+                ctx.fillStyle = item.valueColor;
+                ctx.fillText(item.value + this.opt.valueLableTail, lableCenter, lableMiddle);
+            }
         });
     }
 

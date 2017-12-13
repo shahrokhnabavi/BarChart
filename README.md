@@ -1,5 +1,5 @@
 # BarChart
-==========
+----
 BarChart is a javascript class that gives you ability to visualize your data and show it in the bar chart. This class has a lot of options which give it flexibility and also the usage of this class is so simple.
 
 ### Features
@@ -8,12 +8,13 @@ BarChart is a javascript class that gives you ability to visualize your data and
 * Define multiple chart
 * Each bar has its own color
 * Change the background color
+* Enable/Disable to show value of each bar
+* Adjust the color of value label for each bar
+
 
 ### Upcoming Feature
 * Show Chart Vertically or Horizontally
 * Change the size of font
-* Show the value inside of bar
-* Set the text color of value
 
 ### Demo
 > <a href="https://codepen.io/shahrokhnabavi/pen/KZKPMV" target="_blank">Demo On CodePen</a>
@@ -38,6 +39,9 @@ BarChart is a javascript class that gives you ability to visualize your data and
 * `label`: this is an object that hold label of each axis
 * `data`: An array of objects. Each element of array represents a bar in our chart
 * `bgColor`: background color of the chart
+* `valueLableEnable`: this is a boolean option, if it be true then for each bar the value of that bar will shown as label inside of that bar
+* `valueLableTail`: The value of each bar can be followed by the value of this option
+
 
 **Example**
 ```

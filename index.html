@@ -30,12 +30,14 @@
                 container: "chart",
                 size: {w: 500, h: 600},
                 label: {x: 'X Axis', y: 'Y Axis'},
+                valueLableTail: '%',
+                valueLableEnable: true,
                 data: [
-                    {color: 'red', value: 80},
-                    {color: 'green', value: 20},
-                    {color: 'blue', value: 100},
-                    {color: 'silver', value: 50},
-                    {color: '#fbb', value: 10},
+                    {color: 'red', value: 80, valueColor: 'white'},
+                    {color: 'green', value: 20, valueColor: 'white'},
+                    {color: 'blue', value: 100, valueColor: 'white'},
+                    {color: 'silver', value: 50, valueColor: 'black'},
+                    {color: '#fbb', value: 10, valueColor: 'black'},
                 ]
             });
         </script>
