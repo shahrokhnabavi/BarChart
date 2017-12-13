@@ -10,11 +10,13 @@ BarChart is a javascript class that gives you ability to visualize your data and
 * Change the background color
 * Enable/Disable to show value of each bar
 * Adjust the color of value label for each bar
+* Dynamically can add a bar to chart
 
 
 ### Upcoming Feature
 * Show Chart Vertically or Horizontally
 * Change the size of font
+* Adding some animations
 
 ### Demo
 > <a href="https://codepen.io/shahrokhnabavi/pen/KZKPMV" target="_blank">Demo On CodePen</a>

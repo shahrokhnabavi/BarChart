@@ -3,43 +3,74 @@
     <head>
         <meta charset="utf-8">
         <title>Chart</title>
-
-        <style>
-            body{
-                margin:0;
-                padding:0;
-                display: block;
-            }
-            #chart{
-                border: 1px solid #ccc;
-                position: absolute;
-                top:0;
-                bottom: 0;
-                left: 0;
-                right: 0;
-                margin:auto;
-            }
-        </style>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://farbelous.github.io/bootstrap-colorpicker/dist/css/bootstrap-colorpicker.css">
+        <link rel="stylesheet" href="main.css">
     </head>
     <body>
+
+    <div class="card setting">
+        <div class="card-header">Settings</div>
+        <div class="card-body">
+            <form class="contorl-panel" name="setting">
+                    <div class="form-group">
+                        <input type="text" name="xAxis" class="form-control form-control-sm" placeholder="Enter a Label for X Axis">
+                    </div>
+                    <div class="form-group">
+                      <input type="text" name="yAxis" class="form-control form-control-sm" placeholder="Enter a Label for Y Axis">
+                    </div>
+                    <div class="form-group">
+                      <input type="text" name="width" class="form-control form-control-sm" placeholder="Width of chart">
+                    </div>
+                    <div class="form-group">
+                      <input type="text" name="height" class="form-control form-control-sm" placeholder="Height of chart">
+                    </div>
+                    <div class="form-group">
+                        <div class="input-group mycp">
+                            <input type="text" class="form-control form-control-sm" name="bgColor" value="#67d8eb"/>
+                            <span class="input-group-addon"><i></i></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                      <input type="text" name="valueLableTail" class="form-control form-control-sm" placeholder="Tailer of a bar value">
+                    </div>
+                    <button id="set" class="btn btn-primary btn-sm float-right">Change</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="card add">
+        <div class="card-header">Add New Bar</div>
+        <div class="card-body">
+            <form class="contorl-panel" name="addItem">
+                    <div class="form-group">
+                        <div class="input-group mycp">
+                            <input type="text" class="form-control form-control-sm" name="barColor"/>
+                            <span class="input-group-addon"><i></i></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="input-group mycp">
+                            <input type="text" class="form-control form-control-sm" name="labelColor"/>
+                            <span class="input-group-addon"><i></i></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                      <input type="text" name="barValue" class="form-control form-control-sm" placeholder="Value of the bar">
+                    </div>
+                    <button id="add" class="btn btn-primary btn-sm float-right">Add</button>
+            </form>
+        </div>
+    </div>
+
         <canvas id="chart"></canvas>
 
-        <script type="text/javascript" src="chart.js"></script>
-        <script type="text/javascript">
-            new ChartBar({
-                container: "chart",
-                size: {w: 500, h: 600},
-                label: {x: 'X Axis', y: 'Y Axis'},
-                valueLableTail: '%',
-                valueLableEnable: true,
-                data: [
-                    {color: 'red', value: 80, valueColor: 'white'},
-                    {color: 'green', value: 20, valueColor: 'white'},
-                    {color: 'blue', value: 100, valueColor: 'white'},
-                    {color: 'silver', value: 50, valueColor: 'black'},
-                    {color: '#fbb', value: 10, valueColor: 'black'},
-                ]
-            });
-        </script>
+
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-colorpicker/2.5.1/js/bootstrap-colorpicker.min.js"></script>
+        <script src="chart.js"></script>
+        <script src="main.js"></script>
     </body>
 </html>

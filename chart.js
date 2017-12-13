@@ -1,10 +1,10 @@
 (function() {
-    "use strict";
 
     var lbMargin = 20,
         rtMargin = 10,
         margin   = lbMargin + rtMargin,
-        barSpace = 5;
+        barSpace = 5,
+        canvas = null;
 
     // Define our constructor
     this.ChartBar = function()
@@ -29,8 +29,20 @@
     }
 
     // Public Methods
-    ChartBar.prototype.render = function() {
-        this.render();
+    ChartBar.prototype.addBar = function(options) {
+        this.opt.data.push({
+            color: options.color ? options.color : '#34e',
+            value: options.value ? options.value : 50,
+            valueColor: options.valueColor ? options.valueColor : 'white'
+        });
+        render.call(this);
+    }
+
+    ChartBar.prototype.render = function(options) {
+        if (options && typeof options === "object") {
+            this.opt = extendDefaults(this.opt, options);
+        }
+        initialize.call(this);
     }
 
     // Private Methods
@@ -48,14 +60,11 @@
     // Initialize the canvas
     function initialize()
     {
-        var canvas = document.getElementById( this.opt.container );
+        this.canvas = document.getElementById( this.opt.container );
 
-        canvas.width  = this.opt.size.w;
-        canvas.height = this.opt.size.h;
-        this.ctx = canvas.getContext("2d");
-
-        this.ctx.fillStyle = this.opt.bgColor;
-        this.ctx.fillRect(0, 0, this.opt.size.w, this.opt.size.h);
+        this.canvas.width  = this.opt.size.w;
+        this.canvas.height = this.opt.size.h;
+        this.ctx = this.canvas.getContext("2d");
 
         render.call(this);
     }
@@ -129,6 +138,11 @@
     // Render the Chart
     function render()
     {
+        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+
+        this.ctx.fillStyle = this.opt.bgColor;
+        this.ctx.fillRect(0, 0, this.opt.size.w, this.opt.size.h);
+
         //Axis
         axis.call(this);
 
