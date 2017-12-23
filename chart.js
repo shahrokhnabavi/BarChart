@@ -85,32 +85,36 @@
         var ctx = this.ctx,
             w = this.opt.size.w,
             h = this.opt.size.h,
-            prct = w - margin,
-            barWidth = Math.floor((h - margin - barSpace) / this.opt.data.length) - barSpace;
+            prct  = (this.opt.isVertical?h:w) - margin,
+            barWidth = Math.floor(((this.opt.isVertical ? w : h) - margin - barSpace) / this.opt.data.length) - barSpace;
 
-        if (this.opt.isVertical) {
+        ctx.setTransform(1, 0, 0, 1, 0, 0);
+        this.opt.data.forEach( (item, index) => {
+            // Filter user input
+            item.value = item.value > 100 ? 100 : item.value;
+            item.value = item.value < 0 ? 0 : item.value;
 
-        } else {
-            ctx.setTransform(1, 0, 0, 1, 0, 0);
-            this.opt.data.forEach( (item, index) => {
-                // Filter user input
-                item.value = item.value > 100 ? 100 : item.value;
-                item.value = item.value < 0 ? 0 : item.value;
-
-                let value = item.value * prct / 100,
-                    barMinHeightPoint = index * (barWidth + barSpace) + barSpace + rtMargin
+            let value = item.value * prct / 100,
+                barMinHeightPoint = index * (barWidth + barSpace) + barSpace + (this.opt.isVertical?lbMargin:rtMargin),
                 lableCenter = (lbMargin + 1) + Math.floor(value / 2),
-                    lableMiddle = (barWidth / 2) + barMinHeightPoint;
+                lableMiddle = (barWidth / 2) + barMinHeightPoint;
 
-                ctx.fillStyle = item.color;
+            ctx.fillStyle = item.color;
+
+            if (this.opt.isVertical) {
+                lableMiddle = h - ((lbMargin + 1) + Math.floor(value / 2));
+                lableCenter = (barWidth / 2) + barMinHeightPoint;
+
+                ctx.fillRect(barMinHeightPoint, h - lbMargin - 1, barWidth, -value);
+            } else {
                 ctx.fillRect(lbMargin + 1, barMinHeightPoint, value, barWidth);
+            }
 
-                if (this.opt.valueLableEnable) {
-                    ctx.fillStyle = item.valueColor ? item.valueColor : 'black';
-                    ctx.fillText(item.value + this.opt.valueLableTail, lableCenter, lableMiddle);
-                }
-            });
-        }
+            if (this.opt.valueLableEnable) {
+                ctx.fillStyle = item.valueColor ? item.valueColor : 'black';
+                ctx.fillText(item.value + this.opt.valueLableTail, lableCenter, lableMiddle);
+            }
+        });
     }
 
     //Labels

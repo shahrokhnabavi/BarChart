@@ -11,10 +11,9 @@ BarChart is a javascript class that gives you ability to visualize your data and
 * Enable/Disable to show value of each bar
 * Adjust the color of value label for each bar
 * Dynamically can add a bar to chart
-
+* Show Chart Vertically or Horizontally
 
 ### Upcoming Feature
-* Show Chart Vertically or Horizontally
 * Change the size of font
 * Adding some animations
 
@@ -43,6 +42,7 @@ BarChart is a javascript class that gives you ability to visualize your data and
 * `bgColor`: background color of the chart
 * `valueLableEnable`: this is a boolean option, if it be true then for each bar the value of that bar will shown as label inside of that bar
 * `valueLableTail`: The value of each bar can be followed by the value of this option
+* `isVertical`: If you set this option to true the chart will be shown vertically
 
 
 **Example**

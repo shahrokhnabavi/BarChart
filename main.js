@@ -5,12 +5,13 @@ var myInstance = new ChartBar({
     valueLableTail: '%',
     valueLableEnable: true,
     data: [
-        {color: randomColor(), value: rand(0,100), valueColor: 'white'},
-        {color: randomColor(), value: rand(0,100), valueColor: 'white'},
-        {color: randomColor(), value: rand(0,100), valueColor: 'white'},
         {color: randomColor(), value: rand(0,100), valueColor: 'black'},
         {color: randomColor(), value: rand(0,100), valueColor: 'black'},
-    ]
+        {color: randomColor(), value: rand(0,100), valueColor: 'black'},
+        {color: randomColor(), value: rand(0,100), valueColor: 'black'},
+        {color: randomColor(), value: rand(0,100), valueColor: 'black'},
+    ],
+    isVertical: false
 });
 
 document.getElementById("add").addEventListener("click", function(event){
@@ -35,7 +36,8 @@ document.getElementById("set").addEventListener("click", function(event){
             h: document.setting.height.value ? document.setting.height.value : 300,
         },
         valueLableTail: document.setting.valueLableTail.value ? document.setting.valueLableTail.value : '%',
-        bgColor: document.setting.bgColor.value ? document.setting.bgColor.value : '#ccc',
+        bgColor: document.setting.bgColor.value ? document.setting.bgColor.value : '#edead0',
+        isVertical: document.setting.valueVertical.checked,
     });
 });
 

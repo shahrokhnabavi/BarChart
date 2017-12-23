@@ -1,8 +1,9 @@
 function randomColor(palette){
     let colors = [
+            ["084c61","db504a","e3b505","4f6d7a","56a3a6"],
             ["be6e46","cde7b0","a3bfa8","7286a0","59594a"],
             ["01161e","124559","598392","aec3b0","eff6e0"],
-        //99621e-d38b5d-f3ffb6-739e82-2c5530
+            ["99621e","d38b5d","f3ffb6","739e82","2c5530"],
         ],
         random = Math.floor(Math.random() * 5),
         color = palette ? colors[palette][random] : colors[0][random];
