@@ -5,11 +5,11 @@ var myInstance = new ChartBar({
     valueLableTail: '%',
     valueLableEnable: true,
     data: [
-        {color: 'red', value: 80, valueColor: 'white'},
-        {color: 'green', value: 20, valueColor: 'white'},
-        {color: 'blue', value: 100, valueColor: 'white'},
-        {color: 'silver', value: 50, valueColor: 'black'},
-        {color: '#fbb', value: 10, valueColor: 'black'},
+        {color: randomColor(), value: rand(0,100), valueColor: 'white'},
+        {color: randomColor(), value: rand(0,100), valueColor: 'white'},
+        {color: randomColor(), value: rand(0,100), valueColor: 'white'},
+        {color: randomColor(), value: rand(0,100), valueColor: 'black'},
+        {color: randomColor(), value: rand(0,100), valueColor: 'black'},
     ]
 });
 

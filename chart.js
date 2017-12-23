@@ -1,14 +1,13 @@
-(function() {
+(function () {
 
     var lbMargin = 20,
         rtMargin = 10,
-        margin   = lbMargin + rtMargin,
+        margin = lbMargin + rtMargin,
         barSpace = 5,
         canvas = null;
 
     // Define our constructor
-    this.ChartBar = function()
-    {
+    this.ChartBar = function () {
         // Define option defaults
         var defaults = {
             data: [],
@@ -18,6 +17,7 @@
             bgColor: "white",
             valueLableTail: "%",
             valueLableEnable: false,
+            isVertical: true,
         }
 
         // Create opt by extending defaults with the passed in arugments
@@ -29,7 +29,7 @@
     }
 
     // Public Methods
-    ChartBar.prototype.addBar = function(options) {
+    ChartBar.prototype.addBar = function (options) {
         this.opt.data.push({
             color: options.color ? options.color : '#34e',
             value: options.value ? options.value : 50,
@@ -38,7 +38,7 @@
         render.call(this);
     }
 
-    ChartBar.prototype.render = function(options) {
+    ChartBar.prototype.render = function (options) {
         if (options && typeof options === "object") {
             this.opt = extendDefaults(this.opt, options);
         }
@@ -46,8 +46,7 @@
     }
 
     // Private Methods
-    function extendDefaults(source, properties)
-    {
+    function extendDefaults(source, properties) {
         var property;
         for (property in properties) {
             if (properties.hasOwnProperty(property)) {
@@ -58,11 +57,10 @@
     }
 
     // Initialize the canvas
-    function initialize()
-    {
-        this.canvas = document.getElementById( this.opt.container );
+    function initialize() {
+        this.canvas = document.getElementById(this.opt.container);
 
-        this.canvas.width  = this.opt.size.w;
+        this.canvas.width = this.opt.size.w;
         this.canvas.height = this.opt.size.h;
         this.ctx = this.canvas.getContext("2d");
 
@@ -70,74 +68,73 @@
     }
 
     //Axis
-    function axis()
-    {
-        var ctx  = this.ctx,
+    function axis() {
+        var ctx = this.ctx,
             lRth = this.opt.size.w - rtMargin,
             lBtn = this.opt.size.h - lbMargin;
 
         ctx.beginPath();
         ctx.moveTo(lbMargin, rtMargin);
         ctx.lineTo(lbMargin, lBtn);
-        ctx.lineTo(lRth,     lBtn);
+        ctx.lineTo(lRth, lBtn);
         ctx.stroke();
     }
 
     //Bars
-    function bars()
-    {
-        var ctx  = this.ctx,
-            w    = this.opt.size.w,
-            h    = this.opt.size.h,
+    function bars() {
+        var ctx = this.ctx,
+            w = this.opt.size.w,
+            h = this.opt.size.h,
             prct = w - margin,
-            barWidth = Math.floor((h - margin - barSpace) / this.opt.data.length ) - barSpace;
+            barWidth = Math.floor((h - margin - barSpace) / this.opt.data.length) - barSpace;
 
+        if (this.opt.isVertical) {
 
-        ctx.setTransform(1, 0, 0, 1, 0, 0);
-        this.opt.data.forEach( (item, index) => {
-            // Filter user input
-            item.value = item.value > 100 ? 100 : item.value;
-            item.value = item.value < 0 ? 0 : item.value;
+        } else {
+            ctx.setTransform(1, 0, 0, 1, 0, 0);
+            this.opt.data.forEach( (item, index) => {
+                // Filter user input
+                item.value = item.value > 100 ? 100 : item.value;
+                item.value = item.value < 0 ? 0 : item.value;
 
-            let value = item.value * prct / 100,
-                barMinHeightPoint = index*(barWidth+barSpace)+barSpace+rtMargin
-                lableCenter = (lbMargin+1)+ Math.floor(value/2),
-                lableMiddle = (barWidth/2) + barMinHeightPoint;
+                let value = item.value * prct / 100,
+                    barMinHeightPoint = index * (barWidth + barSpace) + barSpace + rtMargin
+                lableCenter = (lbMargin + 1) + Math.floor(value / 2),
+                    lableMiddle = (barWidth / 2) + barMinHeightPoint;
 
-            ctx.fillStyle = item.color;
-            ctx.fillRect(lbMargin+1, barMinHeightPoint, value, barWidth);
+                ctx.fillStyle = item.color;
+                ctx.fillRect(lbMargin + 1, barMinHeightPoint, value, barWidth);
 
-            if( this.opt.valueLableEnable ) {
-                ctx.fillStyle = item.valueColor ? item.valueColor : 'black';
-                ctx.fillText(item.value + this.opt.valueLableTail, lableCenter, lableMiddle);
-            }
-        });
+                if (this.opt.valueLableEnable) {
+                    ctx.fillStyle = item.valueColor ? item.valueColor : 'black';
+                    ctx.fillText(item.value + this.opt.valueLableTail, lableCenter, lableMiddle);
+                }
+            });
+        }
     }
 
     //Labels
-    function labels()
-    {
+    function labels() {
         var ctx = this.ctx,
-            w   = this.opt.size.w,
-            h   = this.opt.size.h,
+            w = this.opt.size.w,
+            h = this.opt.size.h,
             offset = 10;
 
         ctx.setTransform(1, 0, 0, 1, 0, 0);
 
-        ctx.fillStyle    = '#000000';
-        ctx.textAlign    = 'center';
+        ctx.fillStyle = '#000000';
+        ctx.textAlign = 'center';
         ctx.textBaseline = 'middle';
-        ctx.font         = '12px Verdana';
+        ctx.font = '12px Verdana';
 
-        ctx.fillText(this.opt.label.x, Math.floor((w-margin)/2), h-offset);
+        ctx.fillText(this.opt.label.x, Math.floor((w - margin) / 2), h - offset);
 
         ctx.rotate(3 * Math.PI / 2)
-        ctx.fillText(this.opt.label.y, -(margin+Math.floor((h-margin)/2)), offset );
+        ctx.fillText(this.opt.label.y, -(margin + Math.floor((h - margin) / 2)), offset);
     }
 
     // Render the Chart
-    function render()
-    {
+    function render() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
         this.ctx.fillStyle = this.opt.bgColor;
@@ -150,7 +147,7 @@
         labels.call(this);
 
         // Bars
-        if( this.opt.data.length )
+        if (this.opt.data.length)
             bars.call(this);
     }
 }());
